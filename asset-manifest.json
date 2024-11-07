@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/ListTarefas/static/css/main.c240ea55.css",
+    "main.js": "/ListTarefas/static/js/main.d0cb6716.js",
+    "static/js/453.39c5d408.chunk.js": "/ListTarefas/static/js/453.39c5d408.chunk.js",
+    "index.html": "/ListTarefas/index.html",
+    "main.c240ea55.css.map": "/ListTarefas/static/css/main.c240ea55.css.map",
+    "main.d0cb6716.js.map": "/ListTarefas/static/js/main.d0cb6716.js.map",
+    "453.39c5d408.chunk.js.map": "/ListTarefas/static/js/453.39c5d408.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c240ea55.css",
+    "static/js/main.d0cb6716.js"
+  ]
+}
