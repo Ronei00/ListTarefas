@@ -74,7 +74,7 @@ function App() {
   }, [aberto2]);
 
   useEffect(() => {
-    axios.get("https://localhost:7259/api/tarefa")
+    axios.get("https://ronei.bsite.net/api/tarefa")
     .then(Response => console.log(Response.data))
     .catch(error => console.log(error))
   }, []);
