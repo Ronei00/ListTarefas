@@ -47,7 +47,8 @@ function App() {
 
   useEffect(() => {
     if(newTask){
-      axios.post("https://localhost:7259/api/tarefa", newTask)
+      
+      axios.post("https://webapitarefas.azurewebsites.net/api/tarefa", newTask)
     .then(Response => console.log(Response.data))
     .catch(error => console.log(error))
     }
@@ -56,7 +57,7 @@ function App() {
 
   useEffect(() => {
     if(ValorId !== 0){
-      axios.delete(`https://localhost:7259/api/tarefa/${ValorId}`)
+      axios.delete(`https://webapitarefas.azurewebsites.net/api/tarefa/${ValorId}`)
       .then(Response => console.log(Response.data))
       .catch(error => console.log(error))
     }
@@ -64,7 +65,7 @@ function App() {
 
   useEffect(() => {
     if(aberto2){
-      axios.put(`https://localhost:7259/api/tarefa`, objectedit)
+      axios.put(`https://webapitarefas.azurewebsites.net/api/tarefa`, objectedit)
       .then(Response => {
         console.log(Response.data)
         closeModal2();
@@ -74,7 +75,7 @@ function App() {
   }, [aberto2]);
 
   useEffect(() => {
-    axios.get("https://ronei.bsite.net/api/tarefa")
+    axios.get("https://webapitarefas.azurewebsites.net/api/tarefa")
     .then(Response => console.log(Response.data))
     .catch(error => console.log(error))
   }, []);
