@@ -9,7 +9,7 @@ function ModalEdit({isOpen, onClose, tarefa, custo, datalimite, editTaks}){
         setNomeEditado(tarefa);
         setCustoEditado(custo);
         setDataLimiteEditado(datalimite);
-    },[isOpen]);
+    },[isOpen, tarefa, custo, datalimite]);
     const onChange1 = (e) => {
         setNomeEditado(e.target.value);
     }

@@ -72,7 +72,7 @@ function App() {
       })
       .catch(error => console.log(error))
     }
-  }, [aberto2]);
+  }, [aberto2, objectedit]);
 
   useEffect(() => {
     axios.get("https://webapitarefas.azurewebsites.net/api/tarefa")
