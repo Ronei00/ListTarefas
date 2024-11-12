@@ -46,8 +46,7 @@ function App() {
   };
 
   useEffect(() => {
-    if(newTask){
-      
+    if(newTask){      
       axios.post("https://webapitarefas.azurewebsites.net/api/tarefa", newTask)
     .then(Response => console.log(Response.data))
     .catch(error => console.log(error))
