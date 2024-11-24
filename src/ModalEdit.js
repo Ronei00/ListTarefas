@@ -28,7 +28,7 @@ function ModalEdit({isOpen, onClose, tarefa, custo, datalimite, editTaks}){
         <div id="modal-overlay">
             <div id="modal">
                 <label id="ntarefa">Nome da Tarefa</label><br></br>
-                <input type='text' placeholder='Pagar Conta' value={NomeEditado} onChange={onChange1}/><br></br>
+                <input type='text' placeholder='Pagar Conta' value={NomeEditado} onChange={onChange1} autoFocus/><br></br>
 
                 <label id="custo">Custo</label><br></br>
                 <input type='text' placeholder='20,00' value={CustoEditado} onChange={onChange2}/><br></br>

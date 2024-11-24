@@ -22,11 +22,28 @@ function App() {
     custo: 0,
     datalimite: '',
   });
+  const carregarTarefas = () => {
+    const tarefasSalvas = JSON.parse(localStorage.getItem('tarefas')) || [];
+    valoresset(tarefasSalvas);
+    console.log(tarefasSalvas);
+  };
+  const salvarTarefasNoLocalStorage = (tarefas) => {
+    localStorage.setItem('tarefas', JSON.stringify(tarefas));
+  };
+  useEffect(() => {
+    carregarTarefas();
+  }, []);
+  useEffect(() => {
+  if (valoresget.length > 0) {
+    salvarTarefasNoLocalStorage(valoresget);
+  }
+  }, [valoresget]); 
 
-  const handleClick = (value, value2, value3, count, run = false) => {
+  const handleClick = (value, value2, value3, run = false) => {
     if(run){
+       const newId = valoresget.length > 0 ? Math.max(...valoresget.map(tarefa => tarefa.id)) + 1 : 1;
       const va = {
-        id: count,
+        id: newId,
         nometarefa: value,
         custo: value2,
         datalimite: value3,
@@ -37,11 +54,9 @@ function App() {
         custo: value2,
         datalimite: value3,
       };
-      setNewTask(newdata);    
-      valoresset((prevValues) => {
-        const updatedList = [...prevValues, va];
-        return updatedList.sort((a, b) => a.custo - b.custo);
-      });
+      setNewTask(newdata);
+      const updatedList = [...valoresget, va];
+      valoresset(updatedList);
     }
   };
 
@@ -85,6 +100,9 @@ function App() {
       SetvalorId(id);
       const deletee = valoresget.filter(valor => valor.id !== id);
       valoresset(deletee);
+      if (deletee.length === 0) {
+        localStorage.removeItem('tarefas');
+      } 
     }
   }
 
@@ -93,6 +111,7 @@ function App() {
     setTarefaEditando(tarefaSelecionada);
     SetvalorId2(id);
   }
+
   const editTask = (nome, custo, data, run= false) => {
     if(run){
       const updatedTasks = valoresget.map((task) => {
@@ -101,9 +120,24 @@ function App() {
         }
         return task;
       });
-      valoresset(updatedTasks.sort((a, b) => a.custo - b.custo));
+      valoresset(updatedTasks);
       setObjectedit({id: ValorId2, nometarefa: nome, custo: custo,datalimite: data,});
       openModal2();
+    }
+  };
+
+  const moverParaCima = (index) => {
+    if (index > 0) {
+      const newTarefas = [...valoresget];
+      [newTarefas[index], newTarefas[index - 1]] = [newTarefas[index - 1], newTarefas[index]];
+      valoresset(newTarefas);
+    }
+  };
+  const moverParaBaixo = (index) => {
+    if (index < valoresget.length - 1) {
+      const newTarefas = [...valoresget];
+      [newTarefas[index], newTarefas[index + 1]] = [newTarefas[index + 1], newTarefas[index]];
+      valoresset(newTarefas);
     }
   };
 
@@ -122,12 +156,12 @@ function App() {
             <td>Custo</td>
             <td>Data Limite</td>
           </tr>
-          {valoresget.map((valor) => (
-            <Valores id={valor.id} count={valor.id} tarefa={valor.nometarefa} custo={valor.custo} data={valor.datalimite} delete1={updateget} editando={modaledit} edit={tarefaEditando} edittaskk={editTask} className={valor.custo >= 1000 ? "tarefa-amarela" : ""}/>
+          {valoresget.map((valor, index) => (
+            <Valores id={valor.id} count={valor.id} tarefa={valor.nometarefa} custo={valor.custo} data={valor.datalimite} delete1={updateget} editando={modaledit} edit={tarefaEditando} edittaskk={editTask} className={valor.custo >= 1000 ? "tarefa-amarela" : ""} movercima={moverParaCima} moverbaixo={moverParaBaixo} indexx={index}/>
           ))}
         </table>
         <button onClick={openModal} id="openmodal">Incluir Tarefa</button>
-        <Modal isOpen={aberto} onClose={closeModal} handleClicker={handleClick}/>
+        <Modal isOpen={aberto} onClose={closeModal} handleClicker={handleClick} nomeverifica={valoresget}/>
     </div>
   );
 }
