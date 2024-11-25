@@ -157,7 +157,7 @@ function App() {
             <td>Data Limite</td>
           </tr>
           {valoresget.map((valor, index) => (
-            <Valores id={valor.id} count={valor.id} tarefa={valor.nometarefa} custo={valor.custo} data={valor.datalimite} delete1={updateget} editando={modaledit} edit={tarefaEditando} edittaskk={editTask} className={valor.custo >= 1000 ? "tarefa-amarela" : ""} movercima={moverParaCima} moverbaixo={moverParaBaixo} indexx={index}/>
+            <Valores id={valor.id} count={valor.id} tarefa={valor.nometarefa} custo={valor.custo} data={valor.datalimite} delete1={updateget} editando={modaledit} edit={tarefaEditando} edittaskk={editTask} className={valor.custo >= 1000 ? "tarefa-amarela" : ""} movercima={moverParaCima} moverbaixo={moverParaBaixo} indexx={index} nomeverif={valoresget}/>
           ))}
         </table>
         <button onClick={openModal} id="openmodal">Incluir Tarefa</button>

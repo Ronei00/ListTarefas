@@ -28,14 +28,27 @@ function Modal({isOpen, onClose, handleClicker, nomeverifica}){
         const existe = nomeverifica.some(val => val.nometarefa === valor);
         return existe ? false : true;        
     }
+    const VerificaData = () => {
+        const DataAtual = new Date();
+        const DataInput = new Date(valor3);
+        if(DataInput < DataAtual){
+           return false;
+        }else{
+            return true;
+        }
+    }
 
     const handletask = () => {
         if(valor !== "" && valor2 !== "" && valor3 !== ""){
             if(valor2 > 0){
                 if(VerificaNome()){
-                    onClose();
-                    iD();
-                    handleClicker(valor, valor2, valor3, count, true);
+                    if(VerificaData()){
+                        onClose();
+                        iD();
+                        handleClicker(valor, valor2, valor3, count, true);
+                    }else{
+                        alert("Data inválida");
+                    }
                 }else{
                     alert("Não pode nome repitido");
                 }
